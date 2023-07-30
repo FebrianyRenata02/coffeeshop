@@ -9,27 +9,23 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.specialteam.coffeeshop.user.service.UserService;
-
 @Configuration
 public class WebSecurityConfig {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserService userService;
-
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
-                .authenticationProvider(daoAuthenticationProvider())
-                .authorizeHttpRequests(
-                        (request) -> {
-                            request.requestMatchers("/api/v1/auth/register").permitAll();
-                            request.requestMatchers("/api/v1/auth/check").permitAll();
-                            request.requestMatchers("/api/v1/products/**").hasAuthority("USER");
-                        })
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
+        return http
+                .csrf(csrf -> csrf.disable())
+                // .authenticationProvider(daoAuthenticationProvider())
+                .authorizeHttpRequests((request) -> {
+                    request.requestMatchers("/api/v1/auth/register").permitAll();
+                    request.requestMatchers("/api/v1/auth/check").permitAll();
+                    request.requestMatchers("/api/v1/products/**").hasAuthority("USER");
+                })
                 .authorizeHttpRequests()
                 .anyRequest()
                 .authenticated()
@@ -41,10 +37,11 @@ public class WebSecurityConfig {
                 .build();
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(passwordEncoder);
-        provider.setUserDetailsService(userService);
-        return provider;
-    }
+    // @Bean
+    // public DaoAuthenticationProvider daoAuthenticationProvider() {
+    // DaoAuthenticationProvider provider = new
+    // DaoAuthenticationProvider(passwordEncoder);
+    // provider.setUserDetailsService(userService);
+    // return provider;
+    // }
 }
