@@ -4,5 +4,6 @@ This is personal project to learn fullstack developer with Springboot. Feel free
 understand :laughing:.
 
 ## Todo
+- [ ] Migrate to PostgreSQL
 - [ ] Docker support
-- [ ] Add Roles and Privilegs 
+- [ ] Add Roles and Privileges 
