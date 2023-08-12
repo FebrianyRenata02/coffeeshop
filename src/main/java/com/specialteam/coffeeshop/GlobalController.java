@@ -15,9 +15,7 @@ public class GlobalController {
 
     @GetMapping("/")
     public ModelAndView main(ModelMap map, HttpServletRequest request) {
-        map.put("products", productService.getProducts());
-        map.put("user", request.getUserPrincipal().getName());
-        map.put("cartCount", productService.totalProductInCarts(request.getUserPrincipal().getName()));
+
         return new ModelAndView("index", map);
     }
 }

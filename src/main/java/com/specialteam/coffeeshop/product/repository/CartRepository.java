@@ -2,8 +2,10 @@ package com.specialteam.coffeeshop.product.repository;
 
 import com.specialteam.coffeeshop.product.model.Cart;
 import java.util.List;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CartRepository extends MongoRepository<Cart, String> {
+@Repository
+public interface CartRepository extends CrudRepository<Cart, String> {
     List<Cart> findByUserId(String userId);
 }
