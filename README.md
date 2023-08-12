@@ -9,3 +9,4 @@ understand :laughing:.
 - [ ] Update ORM from Database
 - [ ] Docker support
 - [ ] Add Roles and Privileges
+- [ ] Spring Security with JWT
